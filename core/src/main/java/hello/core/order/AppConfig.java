@@ -26,7 +26,10 @@ public class AppConfig {
 
     @Bean
     public OrderService orderService(){
+
+        //밑에거 있으면 field 주입 안 됨 왜??
         return new OrderServiceImpl(memberRepository(), discountPolicy());
+        //return null;
     }
 
     @Bean
