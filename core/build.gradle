@@ -11,12 +11,28 @@ java {
 	sourceCompatibility = '11'
 }
 
+//롬복 라이브러리, springstart.io 의 Dependency 에서 추가할 수 있음
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	} }
+
 repositories {
 	mavenCentral()
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
+
+
+
+	compileOnly 'org.projectlombok:lombok'
+	//Pr 'e' cessor 라고 쳐서 애먹었다
+	annotationProcessor 'org.projectlombok:lombok'
+
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

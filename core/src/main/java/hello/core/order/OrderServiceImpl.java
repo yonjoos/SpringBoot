@@ -6,6 +6,7 @@ import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -14,25 +15,21 @@ import org.springframework.stereotype.Component;
 
 //@Configuration
 @Component
+@RequiredArgsConstructor // private final 인 값을 넣어주는 생성자를 만들어줌
 public class OrderServiceImpl implements OrderService{
-    //private final MemberRepository memberRepository = new MemoryMemberRepository();
 
-    //private final MemberRepository memberRepository ; //그냥 생성자 주입
-    //private MemberRepository memberRepository; //수정자 주입
-    //@Autowired private MemberRepository memberRepository; //필드 주입
-    //@Autowired private DiscountPolicy discountPolicy;
-    private MemberRepository memberRepository;
-    private DiscountPolicy discountPolicy;
+    private final MemberRepository memberRepository;
+    private final DiscountPolicy discountPolicy;
 
 
-
+    //@RequiredArgsConstructor 쓰면 생성자 필요없다, @Autowired도 필요 없음
+    /*
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
     }
 
-
-
+    */
 
 
 
