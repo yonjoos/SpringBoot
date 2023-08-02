@@ -20,8 +20,8 @@ public class BeanLifeCycleTest {
     static class LifeCycleConfig{
         @Bean
         public  NetworkClient networkClient(){
-            NetworkClient networkClient = new NetworkClient(); //(1)
-            networkClient.setUrl("http://aaa"); //(4) setter로 url 입력...생성자 생성 후에 입력될 수 있다
+            NetworkClient networkClient = new NetworkClient();
+            networkClient.setUrl("http://aaa");
             return networkClient;
         }
     }
