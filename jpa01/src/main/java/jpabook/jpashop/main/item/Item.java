@@ -24,6 +24,6 @@ public abstract class Item {
     private int price;
     private int stockQuantity;
 
-    @ManyToMany(mappedBy = "items")
+    @ManyToMany(mappedBy = "items") //Category java 안에 있는 변수명
     private List<Category> categories = new ArrayList<>();
 }

@@ -20,7 +20,7 @@ public class OrderItem {
     private Item item;
 
     @ManyToOne
-    @JoinColumn(name ="order_id")
+    @JoinColumn(name ="order_id") //오더는 하나의 오더 아이디 가짐
     private Order order;
 
     private int orderPrice; //주문 당시 가격

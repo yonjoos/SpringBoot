@@ -22,7 +22,7 @@ public class Order {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="mamber_id")
+    @JoinColumn(name="mamber_id") //외래키
     private Member member;
 
 
@@ -30,14 +30,14 @@ public class Order {
     private List<OrderItem> orderItems = new ArrayList<>();
 
 
-    @OneToOne
-    @JoinColumn(name="delivery_id")
+    @OneToOne //1:1은 FK누가 하든.., 연관관계 주인을 정해야함
+    @JoinColumn(name="delivery_id") //연관관계 주인이다
     private Delivery delivery;
 
 
     private LocalDateTime orderDate;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING) //enum 은 필요
     private OrderStatus status;
 
 }
