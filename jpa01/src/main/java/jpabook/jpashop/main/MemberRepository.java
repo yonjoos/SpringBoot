@@ -14,7 +14,7 @@ public class MemberRepository { //바꾼거 2 : 이거 위치를 main 안으로 
 
     public Long save(Member member){
         em.persist(member);
-        return member.getId(); // !에러 : id가 Long인데 String으로 주구장창 리턴 하려 했으니 에러 남
+        return member.getId();
     }
 
     public Member find(Long id){
