@@ -17,11 +17,12 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberService {
 
-    @Autowired
-    private MemberRepository memberRepository;
+//  SETTER INJECTION 보다는 아래의 생성자 INJECTION이 better
 
-    @Autowired //######setter injection
-    public void setMemberRepository(MemberRepository memberRepository){
+
+    private final MemberRepository memberRepository;
+    @Autowired //생성자 injection
+    public MemberService(MemberRepository memberRepository){
         this.memberRepository = memberRepository;
     }
 
