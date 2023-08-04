@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 
 @Repository
 @Getter @Setter
-public class MemberRepository { //바꾼거 2 : 이거 위치를 main 안으로 옮겨봄
+public class MemberRepository_old { //바꾼거 2 : 이거 위치를 main 안으로 옮겨봄
     @PersistenceContext
     EntityManager em;
 
