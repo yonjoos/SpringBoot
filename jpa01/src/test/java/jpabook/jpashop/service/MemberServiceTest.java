@@ -10,6 +10,8 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+
 import static org.junit.Assert.*;
 
 
@@ -20,9 +22,9 @@ public class MemberServiceTest {
 
     @Autowired MemberService memberService;
     @Autowired MemberRepository memberRepository;
+    @Autowired EntityManager em; // 1) 이렇게 하면 RollBack은 하면서 insert 쿼리도 볼 수 있음
 
     @Test //Are there any same IDs? in A TRANSACTION
-    @Rollback(value = false)
     public void register() throws Exception{
         //given
         Member member = new Member();
@@ -32,6 +34,7 @@ public class MemberServiceTest {
         Long saveId = memberService.join(member);
 
         //then
+        em.flush(); // 2) 이렇게 하면 RollBack & insert Query 볼 수 있음
         assertEquals(member, memberRepository.findOne(saveId));
     }
 
