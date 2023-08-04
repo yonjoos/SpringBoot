@@ -1,11 +1,11 @@
 package jpabook.jpashop.repository;
 
 
+import jpabook.jpashop.main.Member;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.lang.reflect.Member;
 import java.util.List;
 
 @Repository //spring bean으로 등록, component scan의 대상
