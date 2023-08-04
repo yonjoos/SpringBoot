@@ -17,14 +17,36 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MemberService {
 
-//  SETTER INJECTION 보다는 아래의 생성자 INJECTION이 better
+/*
+
+##### SETTER INJECTION 보다는 아래의 생성자 INJECTION이 better
+    @Autowired
+    private MemberRepository memberRepository;
+
+    @Autowired //setter injection
+    public void setMemberRepository(MemberRepository memberRepository){
+        this.memberRepository = memberRepository;
+    }
+
+*/
 
 
-    private final MemberRepository memberRepository;
+/*
+########## LOMBOK(@AllArgsConstructor, @RequiredArgsConstructor), 쓰면 생성자 injection 을 더 간결하게 만들 수 있음
+
+---@AllArgsConstructor
+---@RequiredArgsConstructor : final 붙은 것만 만들어줌
+
+
+private final MemberRepository memberRepository;
     @Autowired //생성자 injection
     public MemberService(MemberRepository memberRepository){
         this.memberRepository = memberRepository;
     }
+    
+*/
+    private final MemberRepository memberRepository;
+
 
 
     //핵심기능 1. 회원 가입
