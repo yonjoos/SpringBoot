@@ -3,6 +3,7 @@ package jpabook.jpashop.repository;
 
 import jpabook.jpashop.main.Member;
 import jpabook.jpashop.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -11,14 +12,12 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository //spring bean으로 등록, component scan의 대상
+@RequiredArgsConstructor
 public class MemberRepository {
 
-    @Autowired //스프링 부트의 JPA를 쓰면 이렇게 쓸 수도 있다
-    private EntityManager em;
+    //@RequiredArgsConstructor 로 생성자 없앨 수 윘음
+    private final EntityManager em;
 
-    public MemberRepository(EntityManager em){
-        this.em = em;
-    }
 
     public void save(Member member) {
         em.persist(member); //??
