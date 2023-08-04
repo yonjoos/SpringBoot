@@ -2,6 +2,7 @@ package jpabook.jpashop.service;
 
 import jpabook.jpashop.main.Member;
 import jpabook.jpashop.repository.MemberRepository;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +42,24 @@ public class MemberServiceTest {
     @Test
     public void existing_exception() throws Exception{
         //given
+        Member member1 = new Member();
+        member1.setUsername("kim1");
+
+        Member member2 = new Member();
+        member2.setUsername("kim1");
+
+
 
         //when
+        memberService.join(member1);
+        try{
+            memberService.join(member2);
+        }catch(IllegalStateException e){
+            return; 
+        }
 
         //then
+        Assert.fail("예외가 발생해야 한다");
     }
 
 }
