@@ -2,6 +2,8 @@ package jpabook.jpashop.repository;
 
 
 import jpabook.jpashop.main.Member;
+import jpabook.jpashop.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -10,8 +12,13 @@ import java.util.List;
 
 @Repository //spring bean으로 등록, component scan의 대상
 public class MemberRepository {
-    @PersistenceContext //이게 있으면 jpa의 entity manager....뭐라는겨
+
+    @Autowired //스프링 부트의 JPA를 쓰면 이렇게 쓸 수도 있다
     private EntityManager em;
+
+    public MemberRepository(EntityManager em){
+        this.em = em;
+    }
 
     public void save(Member member) {
         em.persist(member); //??
