@@ -12,7 +12,7 @@ import java.util.List;
 
 @Entity
 @Getter
-//Setter(바깥에서)를 넣는 게 아니라, 비즈니르 로직(Entity 안에서, 객체지향적)을 가지고 변경 해야함
+@Setter //(바깥에서)를 넣는 게 아니라, 비즈니르 로직(Entity 안에서, 객체지향적)을 가지고 변경 해야함
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) //싱글테이블 전략
 @DiscriminatorColumn(name = "dtype")
 public abstract class Item {
@@ -33,7 +33,7 @@ public abstract class Item {
     //Entitiy 안에 조절하는 로직이 있어야돼용
 
 
-    // 제고 증가
+    // 재고 증가
     public void addStock(int quantity){
         this.stockQuantity += quantity;
     }

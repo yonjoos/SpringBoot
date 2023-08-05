@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Entity
 @DiscriminatorValue("B")
 @Getter @Setter
-public class Book {
+public class Book extends Item{
 
 
     @Id @GeneratedValue
