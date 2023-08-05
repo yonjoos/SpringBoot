@@ -11,7 +11,6 @@ import javax.persistence.*;
 public class Book extends Item{
 
 
-    @Id @GeneratedValue
     private String author;
     private String isbn;
 }
