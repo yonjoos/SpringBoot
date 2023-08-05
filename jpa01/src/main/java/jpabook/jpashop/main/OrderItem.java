@@ -2,13 +2,16 @@ package jpabook.jpashop.main;
 
 
 import jpabook.jpashop.main.item.Item;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
 @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED) //lombok
 public class OrderItem {
     @Id
     @GeneratedValue

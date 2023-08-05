@@ -24,6 +24,6 @@ public class OrderRepository {
 
 
     //나중에 더 설명하겠음
-    public List<Order> findAll(OrderSearch orderSearch) {}
+    //public List<Order> findAll(OrderSearch orderSearch) {}
 
 }

@@ -1,9 +1,7 @@
 package jpabook.jpashop.main;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
@@ -15,6 +13,7 @@ import java.util.List;
 @Table(name = "orders")
 @Getter
 @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)//lombok, same as "protected OrderItem() {}"
 public class Order {
 
     @Id
