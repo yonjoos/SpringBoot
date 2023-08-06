@@ -23,21 +23,12 @@ public class OrderRepository {
     }
 
 
-    //나중에 더 설명하겠음
-    public List<Order> findAll(OrderSearch orderSearch) {
+    //편하게 들어라, 어차피 안 쓴다
+    //public List<Order> findAllByCriteria(OrderSearch orderSearch){
 
-        String jpql = "select o from Order o join o.member m";
-        boolean isFirstCondition = true;
+    //}
 
-        //어차피 안 된다.
-        //동적쿼리
-        //문자 더하기로 하는거 귀찮다
+    //쿼리 칠 때 오타 나는거 어케 해결? ::: 쿼리 DSL
 
-        return em.createQuery(jpql, Order.class)
-                .setMaxResults(1000)
-                .getResultList();
-
-
-    }
-
+    
 }
