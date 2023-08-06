@@ -30,5 +30,5 @@ public class OrderRepository {
 
     //쿼리 칠 때 오타 나는거 어케 해결? ::: 쿼리 DSL
 
-    
+
 }
