@@ -92,9 +92,13 @@ public class OrderServiceTest {
         Long orderId = orderService.order(member.getId(), item.getId(), orderCount);//주문 취소라 여기에 들어가야함
 
         //when
-
+        orderService.cancelOrder(orderId);
 
         //then
+        Order getOrder = orderRepository.findOne(orderId);
+
+        Assert.assertEquals("주문 취소시 상태는 CANCEL", OrderStatus.CANCEL, getOrder.getStatus());
+        Assert.assertEquals("주문 취소된 상품은 그만큼 재고 증가해야함", 10, item.getStockQuantity());
     }
 
     @Test
