@@ -112,7 +112,7 @@ public class OrderServiceTest {
         Member member = new Member();
         member.setUsername("회원1");
         member.setAdress(new Address("서울", "강가", "123-123"));
-        //em.persist(member);
+        em.persist(member);
         return member;
     }
 
