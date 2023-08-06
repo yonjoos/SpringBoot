@@ -89,8 +89,10 @@ public class OrderServiceTest {
         Item item = createBook("시골 JPA", 10000, 10);
 
         int orderCount = 2; //두 권 주문
+        Long orderId = orderService.order(member.getId(), item.getId(), orderCount);//주문 취소라 여기에 들어가야함
+
         //when
-        Long orderId = orderService.order(member.getId(), item.getId(), orderCount);
+
 
         //then
     }
