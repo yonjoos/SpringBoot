@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -40,12 +41,19 @@ public class MemberController {
 
         Member member = new Member();
         member.setUsername(form.getName());
-        member.setAdress(address);
+        member.setAddress(address);
 
         memberService.join(member);
 
         return "redirect:/"; //첫 번째 페이지로 넘어가
-           
+
+    }
+
+    @GetMapping("/members")
+    public String list(Model model){
+        List<Member> members = memberService.findMembers(); //JPA에서 JPQL로 멤버 목록 줌
+        model.addAttribute("members", members);
+        return "members/memberList"; //화면이 memberList 로 바꿈
     }
 
 
