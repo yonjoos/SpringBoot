@@ -85,8 +85,12 @@ public class OrderServiceTest {
     @Test
     public void 주문취소() throws  Exception{
         //given
+        Member member = createMember();
+        Item item = createBook("시골 JPA", 10000, 10);
 
+        int orderCount = 2; //두 권 주문
         //when
+        Long orderId = orderService.order(member.getId(), item.getId(), orderCount);
 
         //then
     }
