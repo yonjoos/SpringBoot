@@ -29,9 +29,9 @@ public class MemberController {
     }
 
     @PostMapping("/members/new") //데이터를 실제로 등록
-    public String create(@Valid MemberForm form, BindingResult result)  //오류가 있으면 오류가 담겨서 코드가 실행됨
+    public String create(@Valid MemberForm form, BindingResult result) //Why not @Valid Members member?
     {
-        //타임리프-스프링 라이브러리 참고하세요
+        //Because, not always input data == form of Members
         if(result.hasErrors()){
             return "members/createMemberForm"; //어떤 에러가 있는지 이 화면에서 확인 가능, MemberForm에 @NotEmpty에 적어놨던 에러
         //@Valid : MemberForm에 있는 @NotEmpty...이거 불러와줌
