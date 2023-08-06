@@ -32,8 +32,9 @@ public class MemberController {
     public String create(@Valid MemberForm form, BindingResult result) //Why not @Valid Members member?
     {
         //Because, not always input data == form of Members
-        if(result.hasErrors()){
+        if(result.hasErrors()) {
             return "members/createMemberForm"; //어떤 에러가 있는지 이 화면에서 확인 가능, MemberForm에 @NotEmpty에 적어놨던 에러
+        }
         //@Valid : MemberForm에 있는 @NotEmpty...이거 불러와줌
         Address address = new Address(form.getCity(), form.getStreet(), form.getZipcode());
 
@@ -44,5 +45,8 @@ public class MemberController {
         memberService.join(member);
 
         return "redirect:/"; //첫 번째 페이지로 넘어가
+           
     }
+
+
 }
