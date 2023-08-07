@@ -24,14 +24,12 @@ public class ItemService {
     }
 
     @Transactional
-    public Item updateItem(Long itemId, Book param){
+    public void updateItem(Long itemId, String name, int price, int stockQuntity){
         Item findItem = itemRepository.findOne(itemId);
-        findItem.setPrice(param.getPrice());
-        findItem.setName(param.getName());
-        findItem.setStockQuantity(param.getStockQuantity());
+        findItem.setName(name);
+        findItem.setPrice(price);
+        findItem.setStockQuantity(stockQuntity);
 
-        return findItem;
-        //이 코드랑. em.merge();랑 같다
     }
 
     //readOnly
