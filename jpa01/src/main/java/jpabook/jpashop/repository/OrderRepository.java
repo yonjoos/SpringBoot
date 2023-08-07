@@ -4,8 +4,10 @@ package jpabook.jpashop.repository;
 import jpabook.jpashop.main.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
@@ -23,12 +25,43 @@ public class OrderRepository {
     }
 
 
-    //편하게 들어라, 어차피 안 쓴다
-    //public List<Order> findAllByCriteria(OrderSearch orderSearch){
+    public List<Order> findAllByString(OrderSearch orderSearch){
+        String jpql = "select o from Order o join o.member m";
+        boolean isFirstCondition = true;
 
-    //}
+        if(orderSearch.getOrderStatus() != null){
+            if(isFirstCondition){
+                jpql += " where";
+                isFirstCondition = false;
+            }else {
+                jpql += " and";
+            }
+            jpql += " o.status = :status";
+        }
 
-    //쿼리 칠 때 오타 나는거 어케 해결? ::: 쿼리 DSL
+        if(StringUtils.hasText(orderSearch.getMemberName())){
+            if(isFirstCondition){
+                jpql += " where";
+                isFirstCondition = false;
+            } else {
+                jpql += " and";
+            }
+            jpql += "m.username like :name";
+        }
+
+        TypedQuery<Order> query = em.createQuery(jpql, Order.class)
+                .setMaxResults(1000);
+        if(orderSearch.getOrderStatus() != null){
+            query = query.setParameter("status", orderSearch.getOrderStatus());
+        }
+        if(StringUtils.hasText(orderSearch.getMemberName())){
+            query = query.setParameter("name", orderSearch.getMemberName());
+        }
+
+        return query.getResultList();
+    }
+
+
 
 
 }
