@@ -6,7 +6,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity //JPA가 로딩될 때 JPA를 사용하는 애구나
-@Table(name = "MEMBER") //Member Table에 매핑하세용
 public class Member {
     @Id
     private Long id;

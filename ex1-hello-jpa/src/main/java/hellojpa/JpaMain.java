@@ -15,16 +15,21 @@ public class JpaMain {
         EntityTransaction tx = em.getTransaction();
         tx.begin(); //database transaction 시작
 
-        //실제 동작 코드
-        Member member = new Member();
+        try{
+            //실제 동작 코드
+            Member member = new Member();
 
-        member.setId(2L);
-        member.setName("HelloB");
+            member.setId(2L);
+            member.setName("HelloB");
 
-        em.persist(member);
-        tx.commit(); //transaction CLOSE
+            em.persist(member);
+            tx.commit(); //transaction CLOSE
 
-        em.close();
+        }catch (Exception e){ // IF ERROR OCCURS
+            tx.rollback();
+        }finally{ // WHEN THE TASK IS DONE
+            em.close(); // DATABASE CONNECTION OFF
+        }
 
         emf.close();
 
