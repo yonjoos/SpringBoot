@@ -18,8 +18,8 @@ public class JpaMain {
         //실제 동작 코드
         Member member = new Member();
 
-        member.setId(1L);
-        member.setName("HelloA");
+        member.setId(2L);
+        member.setName("HelloB");
 
         em.persist(member);
         tx.commit(); //transaction CLOSE
