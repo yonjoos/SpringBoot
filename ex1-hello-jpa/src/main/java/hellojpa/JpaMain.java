@@ -16,13 +16,9 @@ public class JpaMain {
         tx.begin(); //database transaction 시작
 
         try{
-            //실제 동작 코드
             Member member = new Member();
+            member.setUsername("C");
 
-            member.setId(2L);
-            member.setName("HelloB");
-
-            em.persist(member);
             tx.commit(); //transaction CLOSE
 
         }catch (Exception e){ // IF ERROR OCCURS
