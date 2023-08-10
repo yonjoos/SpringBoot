@@ -5,10 +5,10 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity //JPA가 로딩될 때 JPA를 사용하는 애구나
-@SequenceGenerator(
-        name = "member_seq_generator",
-        sequenceName = "member_seq"
-)
+@TableGenerator(
+        name="member_seq_generator",
+        table = "my_sequences",
+        pkColumnValue = "member_seq", allocationSize = 1)
 public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
