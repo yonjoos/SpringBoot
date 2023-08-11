@@ -14,12 +14,18 @@ public class Order {
 
     @Column(name = "MEMBER_ID")
     private Long memberId;
+
     private LocalDateTime orderDate;
 
     @Enumerated(EnumType.STRING) // !주의!
     private OrderStatus status;
 
 
+
+
+    /*
+    #####################   GETTER & SETTER   ########################
+     */
     public Long getId() {
         return id;
     }

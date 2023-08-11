@@ -16,8 +16,15 @@ public class JpaMain {
         tx.begin(); //database transaction 시작
 
         try{
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);
+
             Member member = new Member();
-            member.setUsername("C");
+            member.setUsername("member1");
+            member.setTeamId(team.getId());
+
+            em.persist(member);
 
             tx.commit(); //transaction CLOSE
 

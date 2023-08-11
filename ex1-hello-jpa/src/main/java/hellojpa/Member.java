@@ -5,18 +5,18 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity //JPA가 로딩될 때 JPA를 사용하는 애구나
-@TableGenerator(
-        name="member_seq_generator",
-        table = "my_sequences",
-        pkColumnValue = "member_seq", allocationSize = 1)
+
 public class Member {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE,
-                generator = "member_seq_generator")
+    @GeneratedValue
+    @Column(name="MEMBER_ID")
     private Long id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "USERNAME")
     private String username;
+
+    @Column(name = "TEAM_ID")
+    private Long teamId;
 
     public Member() {
     }
@@ -35,5 +35,13 @@ public class Member {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public Long getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(Long teamId) {
+        this.teamId = teamId;
     }
 }
