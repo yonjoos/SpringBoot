@@ -22,9 +22,18 @@ public class JpaMain {
 
             Member member = new Member();
             member.setUsername("member1");
-            member.setTeamId(team.getId());
+            member.setTeam(team);
 
             em.persist(member);
+
+            Member findMember = em.find(Member.class, member.getId());
+
+            //이런 거 필요없어짐
+            //Long findTeamId = findMember.getTeam();
+            //Team findTeam = em.find(Team.class, findTeamId);
+
+            Team findTeam = findMember.getTeam();
+
 
             tx.commit(); //transaction CLOSE
 
