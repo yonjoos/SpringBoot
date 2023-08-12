@@ -22,17 +22,44 @@ public class JpaMain {
 
             Member member = new Member();
             member.setUsername("member1");
+
             member.setTeam(team);
+            team.getMemberList().add(member);
 
             em.persist(member);
 
+
+            //########## Member 객체는 그대로, 이름만 바꿔 넣으면 : 영속성에서 Id 그대로
+            member.setUsername("member2");
+            member.setTeam(team);
+            em.persist(member);
+
+            team.getMemberList().add(member);
+
+            //########## Member 객체 새로 생성 : 영속성에서 Id 바뀜
+            Member member2 = new Member();
+            member.setUsername("member3");
+            member.setTeam(team);
+            team.getMemberList().add(member2);
+
+            em.persist(member2);
+
+
+            em.flush();
+
             Member findMember = em.find(Member.class, member.getId());
 
-            //이런 거 필요없어짐
-            //Long findTeamId = findMember.getTeam();
-            //Team findTeam = em.find(Team.class, findTeamId);
+            //Team findTeam = findMember.getTeam();
+            Team findTeam = em.find(Team.class, team.getId());
+            int memberSize = findTeam.getMemberList().size();
+            Member member_1 = findTeam.getMemberList().get(0);
+            Member member_2 = findTeam.getMemberList().get(1);
+            Member member_3 = findTeam.getMemberList().get(2);
 
-            Team findTeam = findMember.getTeam();
+            System.out.println("============" + memberSize);
+            System.out.println("=============" + member_1);
+            System.out.println("=============" + member_2);
+            System.out.println("=============" + member_3);
 
 
             tx.commit(); //transaction CLOSE
