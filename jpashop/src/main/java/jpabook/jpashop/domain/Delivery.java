@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class Delivery {
 
     @Id @GeneratedValue
-    @Column(name = "DELIVERY_ID")
     private Long id;
 
     private String city;

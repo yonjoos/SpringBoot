@@ -48,6 +48,77 @@ public class JpaMain {
             List<Member> members = findTeam1.getMemberList();
             List<Member> members2 = findTeam2.getMemberList();
 
+            em.flush();
+            em.clear();
+
+            findTeam1 = em.find(Team.class, team.getId());
+            findTeam2 = em.find(Team.class, team2.getId());
+            members = findTeam1.getMemberList(); //다시 찾음
+            members2 = findTeam2.getMemberList(); //다시 찾음
+
+
+            //결론, flush를 해도 DB값을 객체에 담으려면 em.find() 해줘야한다.
+
+
+
+            tx.commit(); //transaction CLOSE
+
+
+
+            Team findTeam3 = em.find(Team.class, team.getId());
+            Team findTeam4 = em.find(Team.class, team2.getId());
+            List<Member> members5 = findTeam3.getMemberList();
+            List<Member> members6 = findTeam4.getMemberList();
+
+
+        }catch (Exception e){ // IF ERROR OCCURS
+            tx.rollback();
+        }finally{ // WHEN THE TASK IS DONE
+            em.close(); // DATABASE CONNECTION OFF
+
+        }
+
+        emf.close();
+
+    }
+}
+
+
+
+
+/*
+try{
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);
+
+
+            Team team2 = new Team();
+            team2.setName("TeamB");
+            em.persist(team2);
+
+
+            Member member = new Member();
+            member.setUsername("member1");
+            member.setTeam(team);
+            team.getMemberList().add(member);
+            em.persist(member);
+
+
+            //########## Member 객체 새로 생성 : 영속성에서 Id 바뀜
+            Member member2 = new Member();
+            member2.setUsername("member3");
+            member2.setTeam(team);
+            team.getMemberList().add(member2);
+            em.persist(member2);
+
+
+
+            Team findTeam1 = em.find(Team.class, team.getId());
+            Team findTeam2 = em.find(Team.class, team2.getId());
+            List<Member> members = findTeam1.getMemberList();
+            List<Member> members2 = findTeam2.getMemberList();
+
             System.out.println("######## BEFORE FLUSH ##########");
             System.out.println("######## BEFORE FLUSH ##########");
             System.out.println("######## BEFORE FLUSH ##########");
@@ -129,4 +200,4 @@ public class JpaMain {
         emf.close();
 
     }
-}
+ */
