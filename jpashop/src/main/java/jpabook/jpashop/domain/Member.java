@@ -2,6 +2,8 @@ package jpabook.jpashop.domain;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Member {
@@ -14,6 +16,23 @@ public class Member {
     private String street;
     private String zipcode;
 
+
+    @OneToMany(mappedBy = "member")
+    private List<Order> orders = new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn(name = "LOCKER_ID")
+    private Locker locker;
+
+    //N:M
+    @ManyToMany
+    @JoinTable(name = "MEMBER_PRODUCT") // !주의! JoinColumn 아니고 JoinTable
+    private List<Product> products = new ArrayList<>();
+
+
+    /*
+    #################### GETTER & SETTER #################
+     */
     public Member() {
     }
 

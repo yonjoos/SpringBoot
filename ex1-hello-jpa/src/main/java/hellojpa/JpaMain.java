@@ -30,7 +30,7 @@ public class JpaMain {
             Member member = new Member();
             member.setUsername("member1");
             member.setTeam(team);
-            //team.getMemberList().add(member);
+            team.getMemberList().add(member);
             em.persist(member);
 
 
@@ -38,7 +38,7 @@ public class JpaMain {
             Member member2 = new Member();
             member2.setUsername("member3");
             member2.setTeam(team);
-            //team.getMemberList().add(member2);
+            team.getMemberList().add(member2);
             em.persist(member2);
 
 

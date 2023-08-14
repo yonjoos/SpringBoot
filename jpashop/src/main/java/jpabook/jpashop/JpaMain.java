@@ -17,6 +17,7 @@ public class JpaMain {
 
         try{
 
+
             tx.commit(); //transaction CLOSE
 
         }catch (Exception e){ // IF ERROR OCCURS
