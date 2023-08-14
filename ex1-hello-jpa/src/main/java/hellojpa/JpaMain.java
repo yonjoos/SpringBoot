@@ -17,58 +17,23 @@ public class JpaMain {
         tx.begin(); //database transaction 시작
 
         try{
-            Team team = new Team();
-            team.setName("TeamA");
-            em.persist(team);
 
+            Movie movie = new Movie();
+            movie.setDirector("aaaa");
+            movie.setActor("bbb");
+            movie.setName("spirited away");
+            movie.setPrice(10000);
 
-            Team team2 = new Team();
-            team2.setName("TeamB");
-            em.persist(team2);
-
-
-            Member member = new Member();
-            member.setUsername("member1");
-            member.setTeam(team);
-            team.getMemberList().add(member);
-            em.persist(member);
-
-
-            //########## Member 객체 새로 생성 : 영속성에서 Id 바뀜
-            Member member2 = new Member();
-            member2.setUsername("member3");
-            member2.setTeam(team);
-            team.getMemberList().add(member2);
-            em.persist(member2);
-
-
-
-            Team findTeam1 = em.find(Team.class, team.getId());
-            Team findTeam2 = em.find(Team.class, team2.getId());
-            List<Member> members = findTeam1.getMemberList();
-            List<Member> members2 = findTeam2.getMemberList();
+            em.persist(movie);
 
             em.flush();
             em.clear();
 
-            findTeam1 = em.find(Team.class, team.getId());
-            findTeam2 = em.find(Team.class, team2.getId());
-            members = findTeam1.getMemberList(); //다시 찾음
-            members2 = findTeam2.getMemberList(); //다시 찾음
-
-
-            //결론, flush를 해도 DB값을 객체에 담으려면 em.find() 해줘야한다.
-
+            Movie findMovie = em.find(Movie.class, movie.getId());
+            System.out.println("findMovie = " + findMovie);
 
 
             tx.commit(); //transaction CLOSE
-
-
-
-            Team findTeam3 = em.find(Team.class, team.getId());
-            Team findTeam4 = em.find(Team.class, team2.getId());
-            List<Member> members5 = findTeam3.getMemberList();
-            List<Member> members6 = findTeam4.getMemberList();
 
 
         }catch (Exception e){ // IF ERROR OCCURS
