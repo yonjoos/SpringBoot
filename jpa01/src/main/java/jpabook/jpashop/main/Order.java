@@ -2,6 +2,7 @@ package jpabook.jpashop.main;
 
 
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
@@ -26,6 +27,7 @@ public class Order {
     private Member member;
 
 
+    @BatchSize(size = 1000)
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL) //기본 fetch가 lazy
     private List<OrderItem> orderItems = new ArrayList<>();
 

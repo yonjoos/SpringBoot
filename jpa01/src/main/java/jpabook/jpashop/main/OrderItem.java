@@ -1,6 +1,7 @@
 package jpabook.jpashop.main;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jpabook.jpashop.main.item.Item;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -22,6 +23,8 @@ public class OrderItem {
     @JoinColumn(name = "item_id")
     private Item item;
 
+
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="order_id") //오더는 하나의 오더 아이디 가짐
     private Order order;

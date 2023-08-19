@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Team {
+public class Team extends BaseEntity{
 
     @Id
     @GeneratedValue
@@ -20,12 +20,8 @@ public class Team {
     @OneToMany(mappedBy = "team")
     private List<Member> memberList = new ArrayList<Member>();
 
-    private String createdBy;
-    private LocalDateTime createdDate;
-    private String lastModifiedBy;
-    private LocalDateTime lastModifiedDate;
 
-    
+
 
     public Long getId() {
         return id;
