@@ -156,4 +156,41 @@ class MemberRepositoryTest {
 
 
     }
+
+    @Test
+    public void returnType(){
+
+        Team team = new Team("teamA");
+        teamRepository.save(team);
+
+
+        Member m1 = new Member("AAA", 10);
+        m1.setTeam(team);
+        memberRepository.save(m1);
+
+        List<Member> memberDto = memberRepository.findListByUsername("AAA");
+        for(Member s : memberDto){
+            System.out.println("s = " + s);
+        }
+
+        //COLLECTION 의 경우 : 없는 값 찾으면 Empty collection 반환함, null 아님
+        List<Member> memberDtos = memberRepository.findListByUsername("AAsfdA");
+        for(Member s : memberDtos){
+            System.out.println("s = " + s);
+        }
+
+        //단건조회 의 경우 : 없는 값 찾으면 Empty collection 반환함
+        //JPA는 getSingleResult : Exception, Spring Data JPA는 Exception ㄴㄴ, null 로 내보냄
+        Member memberDtoss = memberRepository.findMemberByUsername("AAdfaA");
+        System.out.println("s = " + memberDtoss);
+
+        //근데 귀찮으니까 그냥 다 Optional으로 싸
+        //근데 얘도 멤버 이름이 중복되면 Exception 터짐:nonUniqueResultException , springframework Exception으로 반환해서 변환해줌
+        //repository는 jpa 기술이 될 수도 , MongoDB 기술이 될 수 있음, 하튼 스프링이 뭐라카노
+        Optional<Member> findMember = memberRepository.findOptionalByUsername("dsf");
+        System.out.println("findMember = " + findMember);
+
+
+
+    }
 }
