@@ -294,4 +294,18 @@ class MemberRepositoryTest {
 
         em.flush();
     }
+
+    @Test
+    public void lock(){
+
+        Member member1 = new Member("member1", 10);
+        memberRepository.save(member1);
+        em.flush();
+        em.clear();
+
+        List<Member> findMember = memberRepository.findLockByUsername("member1");//걍 읽기만 할래
+
+        em.flush();
+
+    }
 }
