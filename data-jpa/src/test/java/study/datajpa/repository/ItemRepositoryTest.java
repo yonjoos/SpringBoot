@@ -15,7 +15,8 @@ class ItemRepositoryTest {
 
     @Test
     public void save(){
-        Item item = new Item();
+        Item item = new Item("A");
+        //PK값이 설정됐기 때문에 persist 호출이 안 된다, 왜냐하면 null이어야 새 객체로 받아들이니까
         itemRepository.save(item);
 
     }
