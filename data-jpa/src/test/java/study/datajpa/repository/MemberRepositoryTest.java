@@ -209,8 +209,9 @@ class MemberRepositoryTest {
         int age = 10;
         PageRequest pageRequest = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "username"));
 
+        //이거 API에 Entity 그대로 반환하면 안 되고 DTO로 변환해야함
         Page<Member> page = memberRepository.findByAge(age, pageRequest);
-        //Page가 알아서 totalcount 쿼리까지 날림
+        Page<MemberDto> toMao = page.map(member -> new MemberDto(member.getId(), member.getUsername(), null));
 
 
         List<Member> content = page.getContent();
