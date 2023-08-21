@@ -17,6 +17,6 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     List<Member> findTop3HelloBy();
 
-    @Query(name = "Member.findByUsername")
+    //없애도 됩니다, 이름 찾아서 있으면
     List<Member> findByUsername(@Param("username") String name);
 }
