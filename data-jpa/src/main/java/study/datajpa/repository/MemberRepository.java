@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public interface MemberRepository extends JpaRepository<Member, Long> {
+public interface MemberRepository extends JpaRepository<Member, Long> , MemberRepositoryCustom{
 
     //구현체가 없는데 어떻게 동작해요? : 인터페이스보고 jpa가 구현체 만들어
 
