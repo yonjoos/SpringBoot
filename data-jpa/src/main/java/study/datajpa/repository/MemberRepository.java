@@ -1,6 +1,8 @@
 package study.datajpa.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import study.datajpa.entity.Member;
 
 import java.util.List;
@@ -12,4 +14,9 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
 
     // 부가기능 추가하고싶으면?
     List<Member> findByUsernameAndAgeGreaterThan(String username, int age);
+
+    List<Member> findTop3HelloBy();
+
+    @Query(name = "Member.findByUsername")
+    List<Member> findByUsername(@Param("username") String name);
 }
