@@ -216,11 +216,7 @@ class MemberRepositoryTest {
         List<Member> content = page.getContent();
         long totalElements = page.getTotalElements();
 
-        for(Member m : content){
-            System.out.println("member = " + m);
-        }
-
-        System.out.println(totalElements);
+        System.out.println("ㅁㅁㅁㅁㅁㅁㅁ" + page.getNumber());
 
 
 
