@@ -24,6 +24,13 @@ public class MemberController {
 
     }
 
+    // Spring JPA injects member into member att
+    @GetMapping("/members2/{id}")
+    public String findMember2(@PathVariable("id") Member member){
+        return member.getUsername();
+
+    }
+
     @PostConstruct
     public void init(){
         memberRepository.save(new Member("userA"));
