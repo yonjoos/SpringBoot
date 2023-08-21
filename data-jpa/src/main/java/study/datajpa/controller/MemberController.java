@@ -2,6 +2,8 @@ package study.datajpa.controller;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,11 +33,20 @@ public class MemberController {
 
     }
 
+    @GetMapping("/members") //page의 default값 setting 은 yml 에서 변경할 수 있어요
+    public Page<Member> list(Pageable pageable){
+        Page<Member> page = memberRepository.findAll(pageable);
+        return page;
+    }
+
     @PostConstruct
     public void init(){
-        memberRepository.save(new Member("userA"));
+        for(int i = 0; i < 100; i++){
+            memberRepository.save(new Member("user" + i, i));
+        }
 
     }
+
 
 
 }
