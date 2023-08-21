@@ -281,4 +281,17 @@ class MemberRepositoryTest {
 
 
     }
+
+    @Test
+    public void queryHint(){
+        Member member1 = new Member("member1", 10);
+        memberRepository.save(member1);
+        em.flush();
+        em.clear();
+
+        Member findMember = memberRepository.findReadOnlyByUsername("member1");//걍 읽기만 할래
+        findMember.setUsername("member2"); //더티체킹할때 메모리 소요됨, 원래값이랑 변경값 둘 다 갖고 있어야하니
+
+        em.flush();
+    }
 }
