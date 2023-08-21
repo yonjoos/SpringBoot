@@ -4,6 +4,9 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 import study.datajpa.dto.MemberDto;
@@ -189,6 +192,35 @@ class MemberRepositoryTest {
         //repository는 jpa 기술이 될 수도 , MongoDB 기술이 될 수 있음, 하튼 스프링이 뭐라카노
         Optional<Member> findMember = memberRepository.findOptionalByUsername("dsf");
         System.out.println("findMember = " + findMember);
+
+
+
+    }
+
+
+    @Test
+    public void paging(){
+        memberRepository.save(new Member("member1", 10));
+        memberRepository.save(new Member("member2", 10));
+        memberRepository.save(new Member("member3", 10));
+        memberRepository.save(new Member("member4", 10));
+        memberRepository.save(new Member("member5", 10));
+
+        int age = 10;
+        PageRequest pageRequest = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "username"));
+
+        Page<Member> page = memberRepository.findByAge(age, pageRequest);
+        //Page가 알아서 totalcount 쿼리까지 날림
+
+
+        List<Member> content = page.getContent();
+        long totalElements = page.getTotalElements();
+
+        for(Member m : content){
+            System.out.println("member = " + m);
+        }
+
+        System.out.println(totalElements);
 
 
 
