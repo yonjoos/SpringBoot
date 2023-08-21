@@ -69,7 +69,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @Query("select m from Member m")
     List<Member> findMemberEntityGraph(); //멤버랑 팀 동시에 검색하고싶어
 
-    @EntityGraph(attributePaths = {"team"}) //메서드 이름으로 지은거에 적용도 가능
+    //@EntityGraph(attributePaths = {"team"}) //메서드 이름으로 지은거에 적용도 가능
+    @EntityGraph("Member.all")
     List<Member> findEntityGraphByUsername(@Param("username") String username);
 
 
