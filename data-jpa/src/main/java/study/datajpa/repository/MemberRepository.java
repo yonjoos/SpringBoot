@@ -56,7 +56,7 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     Page<Member> findByAge(int age, Pageable pageable);
 
 
-    @Modifying //select와 달리 이거 추가해줘야함
+    @Modifying(clearAutomatically = true) //쿼리 나간 후 clear 자동으로 해줌
     @Query("update Member m set m.age = m.age + 1 where m.age >= :age")
     int bulkAgePlus(@Param("age") int age);
 
